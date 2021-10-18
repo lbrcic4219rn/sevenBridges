@@ -1,0 +1,15 @@
+.postWrapp{
+    margin-bottom: 1rem;
+    border: 1px gray solid;
+    padding: 0.7em;
+    border-radius: 1rem;
+}
+
+.postHead{
+    border-bottom: 1px solid gray;
+    margin-bottom: 0.5rem;
+}
+
+.postTitle{
+    margin-bottom: 0.2rem;
+}
