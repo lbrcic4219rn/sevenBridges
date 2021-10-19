@@ -19,14 +19,11 @@ export class PostComponent implements OnInit {
   constructor( private postsService: PostsService, private router: Router, private route: ActivatedRoute) { }
 
   onPostClick(){
-    console.log("kliknut Post sa idjem: ", this.postData.id);
-    console.log(this.postsService.getPostById(this.postData.id))
     this.router.navigate(['post', this.postData.id])
   }
 
   ngOnInit(): void {
     if(Object.keys(this.route.snapshot.params).length === 0){
-      console.log("na pages stranici");
       return;
     }
     this.route.params.subscribe(

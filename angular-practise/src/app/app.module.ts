@@ -7,10 +7,12 @@ import { AppComponent } from './app.component';
 import { PostComponent } from './post/post.component';
 import { RouterModule, Routes } from '@angular/router';
 import { PostsComponent } from './posts/posts.component';
+import { NewPostComponent } from './new-post/new-post.component';
 
 const appRouts: Routes = [
   { path: '', component: PostsComponent, },
   { path: 'post/:id', component: PostComponent,},
+  { path: 'new-post', component: NewPostComponent},
 ]
 
 @NgModule({
@@ -18,6 +20,7 @@ const appRouts: Routes = [
     AppComponent,
     PostComponent,
     PostsComponent,
+    NewPostComponent
   ],
   imports: [
     BrowserModule,
