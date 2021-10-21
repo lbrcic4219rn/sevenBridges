@@ -8,6 +8,7 @@ import { PostComponent } from './post/post.component';
 import { RouterModule, Routes } from '@angular/router';
 import { PostsComponent } from './posts/posts.component';
 import { NewPostComponent } from './new-post/new-post.component';
+import { CommentComponent } from './comment/comment.component';
 
 const appRouts: Routes = [
   { path: '', component: PostsComponent, },
@@ -20,7 +21,8 @@ const appRouts: Routes = [
     AppComponent,
     PostComponent,
     PostsComponent,
-    NewPostComponent
+    NewPostComponent,
+    CommentComponent
   ],
   imports: [
     BrowserModule,

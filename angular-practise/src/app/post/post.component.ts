@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Comment } from '../models/comment.model';
 import { Post } from '../models/post.model';
 import { PostsService } from '../services/posts.service';
 
@@ -14,8 +15,12 @@ export class PostComponent implements OnInit {
     id: 0,
     title: "",
     body: "",
+    comments: [],
   };
   
+  postId: number = 0;
+  comments: Comment[] = [];  
+
   constructor( private postsService: PostsService, private router: Router, private route: ActivatedRoute) { }
 
   onPostClick(){
@@ -28,9 +33,17 @@ export class PostComponent implements OnInit {
     }
     this.route.params.subscribe(
       (vall) => {
+        this.postId = vall.id;
         this.postData = this.postsService.getPostById(vall.id)
       },
       error => console.log(error)      
+    )
+    this.postsService.fetchComments(this.postId).subscribe(
+      (vall) => {
+        this.comments = vall;
+        console.log("comments: ", vall);
+      },
+      error => console.log(error)
     )
   }
 }
