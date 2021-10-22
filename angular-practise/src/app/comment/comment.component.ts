@@ -14,6 +14,7 @@ export class CommentComponent implements OnInit {
     name: "",
     postId: 0,
   };
+  
   constructor() { }
 
   ngOnInit(): void {

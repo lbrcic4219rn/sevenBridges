@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Comment } from '../models/comment.model';
 import { Post } from '../models/post.model';
@@ -19,17 +20,34 @@ export class PostComponent implements OnInit {
   };
   
   postId: number = 0;
-  comments: Comment[] = [];  
+  isPage: boolean = false;
 
   constructor( private postsService: PostsService, private router: Router, private route: ActivatedRoute) { }
 
   onPostClick(){
-    this.router.navigate(['post', this.postData.id])
+    if(!this.isPage)
+      this.router.navigate(['post', this.postData.id])
+  }
+
+  onSubmit(form: NgForm){
+    const comment: Comment = {
+      postId: this.postData.id,
+      name: "",
+      email: "",
+      id: this.postData.comments.length + 1,
+      body: form.form.value.content,
+    }
+    this.postData.comments.unshift(comment);
+    console.log(form);
+    
   }
 
   ngOnInit(): void {
     if(Object.keys(this.route.snapshot.params).length === 0){
+      this.isPage = false;
       return;
+    }else {
+      this.isPage = true;
     }
     this.route.params.subscribe(
       (vall) => {
@@ -38,12 +56,14 @@ export class PostComponent implements OnInit {
       },
       error => console.log(error)      
     )
-    this.postsService.fetchComments(this.postId).subscribe(
-      (vall) => {
-        this.comments = vall;
-        console.log("comments: ", vall);
-      },
-      error => console.log(error)
-    )
+    if(!this.postData.comments){
+      this.postsService.fetchComments(this.postId).subscribe(
+        (vall) => {
+          this.postData.comments = vall;
+          console.log("comments: ", vall);
+        },
+        error => console.log(error)
+      )
+    }
   }
 }

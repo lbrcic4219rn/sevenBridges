@@ -1,7 +1,3 @@
-<div class="postContainer">
-    <ul>
-        <li *ngFor="let post of posts">
-            <app-post [postData]="post"></app-post>
-        </li>        
-    </ul>
+<div *ngFor="let post of posts" class="mb-3">
+    <app-post [postData]="post"></app-post>
 </div>

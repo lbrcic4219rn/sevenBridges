@@ -22,10 +22,11 @@ export class NewPostComponent implements OnInit {
       this.statusMessage = "Title and content are required fields";
       return; 
     }
-    let formValues = form.form.value;
+    const formValues = form.form.value;
     const post: Post = {
       id: 0,
       userId: 0,
+      comments: [],
       ...formValues,
     }
     this.postsService.postPost(post).subscribe(

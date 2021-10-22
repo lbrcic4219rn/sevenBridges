@@ -36,7 +36,7 @@ export class PostsService {
     }
 
     addPost(post: Post){
-      this.posts.unshift(post);
+      this.posts.push(post);
     }
     
     getPostById(id: number){

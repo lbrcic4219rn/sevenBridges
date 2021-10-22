@@ -1,20 +1,27 @@
-<div (click)="onPostClick()" class="postWrapp">
-    <div class="postHead">
+<div (click)="onPostClick()" class="card">
+    <div class="card-header">
         <div> user with id: {{ postData.userId }}</div>
     </div>
-    <div class="postContent">
-        <div class="postTitle">
+    <div class="card-body">
+        <p>
            Title: {{ postData.title }}
-        </div>
-        <div class="postBody">
+        </p>
+        <p>
             {{ postData.body}}
-        </div>
+        </p>
     </div>
-    <div *ngIf="postData.comments">
-        <ul>
-            <li *ngFor="let comment of comments">
-                <app-comment [commentData]="comment"></app-comment>
-            </li>
-        </ul>
+    <ul class="list-group list-group-flush" *ngIf="isPage">
+        <li class="list-group-item" *ngFor="let comment of postData.comments">
+            <app-comment [commentData]="comment"></app-comment>
+        </li>
+    </ul>
+    
+    <div *ngIf="isPage">
+        <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+            <label for="content">
+                <input class="form-control" type="text" name="content" ngModel required>
+            </label>
+            <button class="btn btn-info" [disabled]="!f.valid" type="submit">comment</button>
+        </form>
     </div>
 </div>
