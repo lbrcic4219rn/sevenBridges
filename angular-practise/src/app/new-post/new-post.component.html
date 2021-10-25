@@ -6,10 +6,18 @@
     <br>
     <label for="body">
         Content: 
-        <input class="form-control" type="text" name="body" ngModel required>
+        <input #cont="ngModel" (keyup)="displayMessage($event)" #content="ngModel" class="form-control" type="text" name="body" ngModel required appValidator>
     </label>
+    <div>
+        {{ contentErrorMessage }}
+        <!-- <div *ngIf="cont.control.errors ? true: false">
+            <span *ngIf="cont.control.errors?.forbiddenName != null ? true: false">
+                {{ cont.control.errors.forbiddenName.value }}
+            </span>
+        </div> -->
+    </div>
     <br>
-    <button class="btn btn-info" [disabled]="!f.valid" type="submit"> Upload </button>
+    <button class="btn btn-info" [disabled]="!f.valid" type="submit" > Upload </button>
     <br>
     <p>{{ statusMessage }}</p>
 </form>

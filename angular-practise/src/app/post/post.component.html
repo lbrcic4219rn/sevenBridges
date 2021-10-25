@@ -19,7 +19,7 @@
     <div *ngIf="isPage">
         <form (ngSubmit)="onSubmit(f)" #f="ngForm">
             <label for="content">
-                <input class="form-control" type="text" name="content" ngModel required>
+                <input type="text" class="form-control" name="content" ngModel required>
             </label>
             <button class="btn btn-info" [disabled]="!f.valid" type="submit">comment</button>
         </form>

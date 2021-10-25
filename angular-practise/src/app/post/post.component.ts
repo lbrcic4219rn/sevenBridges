@@ -37,9 +37,7 @@ export class PostComponent implements OnInit {
       id: this.postData.comments.length + 1,
       body: form.form.value.content,
     }
-    this.postData.comments.unshift(comment);
-    console.log(form);
-    
+    this.postData.comments.unshift(comment);    
   }
 
   ngOnInit(): void {
@@ -60,7 +58,6 @@ export class PostComponent implements OnInit {
       this.postsService.fetchComments(this.postId).subscribe(
         (vall) => {
           this.postData.comments = vall;
-          console.log("comments: ", vall);
         },
         error => console.log(error)
       )

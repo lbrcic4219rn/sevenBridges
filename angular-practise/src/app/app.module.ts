@@ -9,6 +9,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { PostsComponent } from './posts/posts.component';
 import { NewPostComponent } from './new-post/new-post.component';
 import { CommentComponent } from './comment/comment.component';
+import { ValidatorDirective } from './directives/validator.directive';
 
 const appRouts: Routes = [
   { path: '', component: PostsComponent, },
@@ -22,7 +23,8 @@ const appRouts: Routes = [
     PostComponent,
     PostsComponent,
     NewPostComponent,
-    CommentComponent
+    CommentComponent,
+    ValidatorDirective
   ],
   imports: [
     BrowserModule,
